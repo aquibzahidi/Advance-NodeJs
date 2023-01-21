@@ -2,6 +2,7 @@
 This repository contains Advance Javascript, NodeJs concepts and Interview questions
 
 ## Top 10 Interview Question
+
 Q1: What is Node.js and why is it useful?
 
 Answer: Node.js is an open-source, cross-platform JavaScript runtime environment. It allows developers to run JavaScript code on the server-side, creating backend applications. Node.js is built on top of the V8 JavaScript engine, which is the same engine that runs JavaScript in Google Chrome.
@@ -17,7 +18,7 @@ Another way to handle asynchronous code in Node.js is by using the async/await s
 It's important to note that the async/await syntax is built on top of Promises, so it's still using the same underlying mechanism.
 
 
-Q3: 
+Q3: What is Event Loop?
 Answer: The event loop is a mechanism in Node.js that handles the execution of asynchronous code. It is responsible for checking the message queue for new messages (also known as events) and executing the associated callback functions.
 The event loop has a **single thread** that is responsible for handling all the asynchronous operations, but it also uses other **system threads for I/O operations** such as reading and writing files.
 The event loop runs continuously, checking for new events in the message queue and executing their associated callbacks. When there are no more events in the queue, the event loop will wait for new events to arrive. Once a new event is added to the queue, the event loop will continue execution and execute the callback function associated with that event.
@@ -117,7 +118,7 @@ Answer: Performance optimization is an ongoing process that involves identifying
 
 2. Minimize the number of dependencies: The more dependencies you have, the more resources your application will require to run. Minimizing the number of dependencies can help improve performance.
 
-3. Use caching: Caching can help reduce the number of database queries and network requests your application makes, which can help improve performance. **Radis** and **Memcached** can be used for caching.
+3. [Use caching](#caching-using-redis): Caching can help reduce the number of database queries and network requests your application makes, which can help improve performance. [**Radis**](#caching-using-redis) and **Memcached** can be used for caching.
 
 4. Use a reverse proxy: Reverse proxies like Nginx or HAProxy can help offload some of the workload from your Node.js application, which can help improve performance.
 
@@ -218,11 +219,6 @@ This code sets the Content-Security-Policy header using the res.set function pro
 
 ## Caching using redis
 
-> go to ./performance/redis.js for whole code
-> run npm install
-> run script `npm run redis` for running redis example
-
-
 1. Install redis server
 
 - Windows:
@@ -302,6 +298,11 @@ app.get("/data", (req, res) => {
 This code uses the cache to handle the request, if the response is already in the cache, it will return the cached response, if not it will fetch the data from the database or API and store the result in the cache.
 
 This is a basic example of using Redis for caching in an Express.js application, it will improve the performance of your application by reducing the number of requests to the server and speeding up the response time.
+
+- Note: For checking the whole code and running, follow these steps:
+1. run npm install
+2. run script `npm run redis` for running redis example.
+3. go to [./performance/redis.js](./performance/redis.js) for whole code, you will get the code.
 
 
 ## Express Js Framework
