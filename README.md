@@ -201,7 +201,7 @@ const app = express();
 
 app.use((req, res, next) => {
     // Set the Content-Security-Policy header
-    res.set('Content-Security-Policy', "default-src 'self'; script-src 'self' https://example.com 'unsafe-inline'; img-src 'self' https://example.com data:; style-src 'self' https://example.com 'unsafe-inline'; report-uri /csp-report");
+    res.set('Content-Security-Policy', "default-src 'self'; script-src 'self' https://example.com; img-src 'self' https://example.com; style-src 'self' https://example.com;");
     next();
 });
 
@@ -212,15 +212,9 @@ app.get('/', (req, res) => {
 app.listen(3000, () => {
     console.log('Server listening on port 3000');
 });
+
 ```
-This code sets the Content-Security-Policy header using the res.set function provided by the Express framework. The policy specified in the header states that:
-
--Default sources of content should only be loaded from the same origin ('self').
--Scripts can only be loaded from the same origin and from https://example.com and also allows the use of inline scripts.
--Images can be loaded from the same origin, from https://example.com and from data:.
--Styles can be loaded from the same origin, from https://example.com and also allows the use of inline styles.
--It also specifies a report-uri where the browser should send any violations of the policy.
-
+This code sets the Content-Security-Policy header using the res.set function provided by the Express framework. The policy specified in the header states that resources should only be loaded from the same origin ('self') and from https://example.com, it also separates the different types of resources such as scripts, images and styles.
 
 
 ## Javasript
