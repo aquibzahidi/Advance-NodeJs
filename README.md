@@ -216,6 +216,93 @@ app.listen(3000, () => {
 ```
 This code sets the Content-Security-Policy header using the res.set function provided by the Express framework. The policy specified in the header states that resources should only be loaded from the same origin ('self') and from https://example.com, it also separates the different types of resources such as scripts, images and styles.
 
+## Caching using redis
+
+> go to ./performance/redis.js for whole code
+> run npm install
+> run script `npm run redis` for running redis example
+
+
+1. Install redis server
+
+- Windows:
+
+  - Download the Redis Windows installer from the official website (https://github.com/microsoftarchive/redis/releases)
+  - Run the installer to install Redis on your system.
+  - Open the Command Prompt and navigate to the Redis installation directory (default: `C:\Program Files\Redis`)
+  - Run the command redis-cli to start the Redis server.
+
+- macOS:
+
+  - Install Redis using Homebrew by running the command brew install redis.
+  - Start the Redis server by running the command redis-server
+
+- Linux:
+
+  - Install Redis on Ubuntu by running the command sudo apt-get install redis-server
+  - Start the Redis server by running the command sudo systemctl start redis-server
+  - To start Redis automatically on system boot, run the command sudo systemctl enable redis-server
+
+2. Install redis client for Node.js
+
+```
+npm i redis
+```
+
+3. Create a Redis client instance
+
+```
+const client = redis.createClient({
+  host: "127.0.0.1",
+  port: 6379,
+});
+```
+
+4. Create middleware to handle caching
+
+```
+function cache(req, res, next) {
+  const key = "__express__" + req.originalUrl || req.url;
+
+  client.get(key).then(reply => {
+    
+    if (reply) {
+      res.send(JSON.parse(reply));
+    } else {
+      res.sendResponse = res.send;
+      res.send = (body) => {
+        //expire in 1 min
+        client.set(key, JSON.stringify(body), {'EX':60});
+        res.sendResponse(body);
+      };
+      next();
+    }
+  }).catch(err=>{
+    console.log(err);
+    res.status(500).send(err)
+  });
+}
+```
+
+5. Use the caching middleware in your application
+```
+app.use(cache);
+```
+
+6. Use the cache
+```
+app.get("/data", (req, res) => {
+  let data = 0;
+  for (let i = 1; i < 100000000; i++) {
+    data += 1;
+  }
+  res.json(data);
+});
+```
+This code uses the cache to handle the request, if the response is already in the cache, it will return the cached response, if not it will fetch the data from the database or API and store the result in the cache.
+
+This is a basic example of using Redis for caching in an Express.js application, it will improve the performance of your application by reducing the number of requests to the server and speeding up the response time.
+
 
 ## Express Js Framework
 
