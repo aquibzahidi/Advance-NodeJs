@@ -4,7 +4,8 @@
   "description": "Learn NodeJs with me",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "redis": "nodemon performance/redis.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,10 @@
   "bugs": {
     "url": "https://github.com/aquibzahidi/Advance-NodeJs/issues"
   },
-  "homepage": "https://github.com/aquibzahidi/Advance-NodeJs#readme"
+  "homepage": "https://github.com/aquibzahidi/Advance-NodeJs#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "redis": "^4.5.1",
+    "response-time": "^2.3.2"
+  }
 }

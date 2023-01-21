@@ -217,5 +217,29 @@ app.listen(3000, () => {
 This code sets the Content-Security-Policy header using the res.set function provided by the Express framework. The policy specified in the header states that resources should only be loaded from the same origin ('self') and from https://example.com, it also separates the different types of resources such as scripts, images and styles.
 
 
-## Javasript
+## Express Js Framework
+
+1. What is Express.js and why is it used?
+2. How do you create a basic Express.js application?
+3. How do you define routes in an Express.js application?
+4. How do you handle query parameters and form data in an Express.js application?
+5. How do you handle middleware in an Express.js application?
+6. What is the difference between app.route() and Router() in Express.js?
+7. How do you handle errors in an Express.js application?
+8. How do you serve static files in an Express.js application?
+9. How do you use a template engine with Express.js?
+10. How do you use a database with Express.js and which databases are commonly used with it?
+11. How do you authenticate and authorize users in an Express.js application?
+12. How do you test an Express.js application?
+13. How do you handle CORS in an Express.js application?
+14. How do you configure and use a proxy server with Express.js?
+15. How do you handle file uploads in an Express.js application?
+16. How do you use WebSockets with Express.js?
+17. How do you use session and cookies in an Express.js application?
+18. How do you use Express.js with other popular JavaScript frameworks such as React or Angular?
+19. How do you optimize the performance of an Express.js application?
+20. How do you implement security best practices such as input validation and sanitization in an Express.js application?
+21. How do you use a Content Security Policy (CSP) to secure an Express.js application?
+22. How do you deploy an Express.js application to a production environment?
+
 
