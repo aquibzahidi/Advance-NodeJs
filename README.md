@@ -2,10 +2,9 @@
 This repository contains Advance Javascript, NodeJs concepts and Interview questions
 
 > ## Concepts
-
 - ## Optimizing Performance
   - ### [Caching](#caching-using-redis)
-
+  - ### [Implementing Cluster Module](#cluster-module)
 
 
 > ## Top Interview Questions
@@ -319,6 +318,65 @@ This is a basic example of using Redis for caching in an Express.js application,
 1. run npm install
 2. run script `npm run redis` for running redis example.
 3. go to [./performance/redis.js](./performance/redis.js) for whole code, you will get the code.
+
+## Cluster Module
+
+The cluster module in Node.js allows you to take advantage of the multiple CPU cores in a single machine by creating child processes, also known as workers, that all share the same server ports. This means that instead of having a single Node.js process handle all incoming connections, you can have multiple worker processes, each handling a portion of the connections. This can greatly increase the performance and scalability of your application, as each worker process can run on its own CPU core, allowing for parallel processing.
+
+Additionally, the cluster module provides a way to handle worker restarts and other logic. This is useful in cases where a worker process may crash or otherwise become unresponsive, as the cluster module can automatically spawn a new worker process to replace it.
+
+Overall, the cluster module in Node.js provides a powerful and easy-to-use solution for taking advantage of multiple CPU cores and improving the performance and scalability of your application.
+
+>Note: Go to [/performance/cluster.js](./performance/cluster.js) for whole implementation.
+
+>Look at the difference in performance
+
+- Running on only master thread (total time - 79 seconds)
+```
+[Sun Jan 22 2023 12:17:25 GMT+0530 (India Standard Time)] INFO
+[Sun Jan 22 2023 12:17:25 GMT+0530 (India Standard Time)] INFO Target URL:          http://localhost:3000
+[Sun Jan 22 2023 12:17:25 GMT+0530 (India Standard Time)] INFO Max requests:        1000
+[Sun Jan 22 2023 12:17:25 GMT+0530 (India Standard Time)] INFO Concurrency level:   100
+[Sun Jan 22 2023 12:17:25 GMT+0530 (India Standard Time)] INFO Agent:               none
+[Sun Jan 22 2023 12:17:25 GMT+0530 (India Standard Time)] INFO
+[Sun Jan 22 2023 12:17:25 GMT+0530 (India Standard Time)] INFO Completed requests:  1000
+[Sun Jan 22 2023 12:17:25 GMT+0530 (India Standard Time)] INFO Total errors:        0
+[Sun Jan 22 2023 12:17:25 GMT+0530 (India Standard Time)] INFO Total time:          78.8166126 s
+[Sun Jan 22 2023 12:17:25 GMT+0530 (India Standard Time)] INFO Requests per second: 13
+[Sun Jan 22 2023 12:17:25 GMT+0530 (India Standard Time)] INFO Mean latency:        7474.9 ms
+[Sun Jan 22 2023 12:17:25 GMT+0530 (India Standard Time)] INFO
+[Sun Jan 22 2023 12:17:25 GMT+0530 (India Standard Time)] INFO Percentage of the requests served within a certain time
+[Sun Jan 22 2023 12:17:25 GMT+0530 (India Standard Time)] INFO   50%      8132 ms
+[Sun Jan 22 2023 12:17:25 GMT+0530 (India Standard Time)] INFO   90%      8166 ms
+[Sun Jan 22 2023 12:17:25 GMT+0530 (India Standard Time)] INFO   95%      8178 ms
+[Sun Jan 22 2023 12:17:25 GMT+0530 (India Standard Time)] INFO   99%      8187 ms
+[Sun Jan 22 2023 12:17:25 GMT+0530 (India Standard Time)] INFO  100%      8194 ms (longest request)
+```
+- Running on worker threads (total time - 4 seconds)
+```
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO Target URL:          http://localhost:3000
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO Max requests:        1000
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO Concurrency level:   100
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO Agent:               none
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO Completed requests:  1000
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO Total errors:        878
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO Total time:          4.003889 s
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO Requests per second: 250
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO Mean latency:        395.8 ms
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO Percentage of the requests served within a certain time
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO   50%      67 ms
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO   90%      1701 ms
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO   95%      2314 ms
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO   99%      2700 ms
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO  100%      3213 ms (longest request)
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO  100%      3213 ms (longest request)
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO
+[Sun Jan 22 2023 12:08:54 GMT+0530 (India Standard Time)] INFO    -1:   878 errors
+```
 
 
 ## Express Js Framework

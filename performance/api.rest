@@ -1,2 +1,5 @@
 #for checking redis
 GET http://localhost:3000/data
+
+#for cluster test
+GET http://localhost:3000
