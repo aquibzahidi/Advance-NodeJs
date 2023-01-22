@@ -4,7 +4,8 @@ This repository contains Advance Javascript, NodeJs concepts and Interview quest
 > ## Concepts
 
 - ## Performance
-  ### [Caching using redis](#caching-using-redis)
+  [Caching](#caching-using-redis-1)
+
 
 
 > ## Top Interview Questions
