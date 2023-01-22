@@ -1,7 +1,13 @@
 # Advance-NodeJs
 This repository contains Advance Javascript, NodeJs concepts and Interview questions
 
-## Top 10 Interview Question
+> ## Concepts
+
+## Performance
+- ### [Caching using redis](#caching-using-redis)
+
+
+> ## Top Interview Questions
 
 Q1: What is Node.js and why is it useful?
 
@@ -11,6 +17,7 @@ Node.js is useful because it allows developers to use JavaScript, a language pri
 
 
 Q2: How do you handle asynchronous code in Node.js?
+
 Answer: In Node.js, all I/O operations (e.g. reading or writing to a file, making an HTTP request) are asynchronous, which means they do not block the execution of other code. To handle asynchronous code, Node.js uses callbacks and events.
 Callbacks are functions that are passed as arguments to other functions and are executed after the function they were passed to completes its task. For example, when reading a file in Node.js, you would pass a callback function that will be executed once the file has been read.
 Promises are an alternative to callback, they are objects that represent the eventual completion (or failure) of an asynchronous operation and it's return value.
@@ -19,6 +26,7 @@ It's important to note that the async/await syntax is built on top of Promises, 
 
 
 Q3: What is Event Loop?
+
 Answer: The event loop is a mechanism in Node.js that handles the execution of asynchronous code. It is responsible for checking the message queue for new messages (also known as events) and executing the associated callback functions.
 The event loop has a **single thread** that is responsible for handling all the asynchronous operations, but it also uses other **system threads for I/O operations** such as reading and writing files.
 The event loop runs continuously, checking for new events in the message queue and executing their associated callbacks. When there are no more events in the queue, the event loop will wait for new events to arrive. Once a new event is added to the queue, the event loop will continue execution and execute the callback function associated with that event.
@@ -27,6 +35,7 @@ It's important to note that while the event loop is running on a single thread, 
 
 
 Q4: How do you handle errors in Node.js?
+
 Answer: In Node.js, errors are typically handled using the **try-catch** statement or by passing a callback function as an **error-first argument**.
 
 The try-catch statement allows you to catch any errors that occur within the try block and handle them in the corresponding catch block. For example:
@@ -55,6 +64,7 @@ Additionally, with the recent versions of Node.js, developers are encouraged to 
 
 
 Q5: What is the purpose of a package manager in Node.js and which one do you prefer?
+
 Answer: A package manager is a tool that makes it easy to install, update, and manage the packages or libraries that are used in a Node.js application.
 
 The most popular package manager for Node.js is `npm` (short for Node Package Manager). npm is the default package manager for Node.js and it comes bundled with the Node.js installation. npm provides a command-line interface that can be used to search for packages, install them, and manage their versions. npm also provides a public registry where developers can publish their packages, making them easily available to other developers.
@@ -65,6 +75,7 @@ Personally, I prefer npm, but it's up to developers to choose the one that they 
 
 
 Question 6: How do you debug a Node.js application?
+
 Answer: There are several ways to debug a Node.js application:
 
 1. Using the built-in debugger statement: you can insert the debugger statement in your code where you want to start debugging. When you run your application in debug mode, the code execution will pause at the debugger statement, and you will be able to inspect variables and call stack using the command line interface.
@@ -81,6 +92,7 @@ It's also important to mention that using the process manager such as pm2, super
 
 
 Q7: What is the difference between Node.js and JavaScript?
+
 Answer: Node.js and JavaScript are related but distinct technologies. JavaScript is a programming language that is primarily used for creating interactive front-end web applications. It is used to add dynamic behavior to web pages, such as responding to user input, making network requests, and updating the page without requiring a page refresh.
 
 Node.js, on the other hand, is a JavaScript runtime environment. It allows developers to run JavaScript code on the server-side, creating backend applications. Node.js is built on top of the V8 JavaScript engine, which is the same engine that runs JavaScript in Google Chrome. It provides an API for interacting with the file system, making network requests, and creating web servers.
@@ -134,6 +146,7 @@ Answer: Performance optimization is an ongoing process that involves identifying
 
 
 Q10: Can you explain the differences between the CommonJS and ES modules?
+
 Answer: CommonJS and ES modules are two different module systems used in JavaScript.
 
 CommonJS is a module system that was originally designed for server-side JavaScript and is used in Node.js. It uses a synchronous, blocking loading model and exports objects or functions using the module.exports and require() statements.
@@ -156,6 +169,7 @@ It's important to note that Node.js also supports ES modules since version 13.2.
 
 
 Q11: What is XSS?
+
 Answer: Cross-Site Scripting (XSS) is a type of security vulnerability that allows an attacker to inject malicious code into a web page viewed by other users. Here are a few best practices for preventing XSS attacks:
 
 1. Input validation: Ensure that all user inputs are properly validated, and that any special characters or scripts are properly escaped or removed.
@@ -186,6 +200,7 @@ function handleInput(req, res) {
 It's important to note that this example uses the Joi library to validate the user input, but also it's important to use other methods such as encoding, security headers and etc to prevent from XSS attacks.
 
 Q12: What is CSP and how it prevents from attack?
+
 Answer: Content Security Policy (CSP) is a security feature that helps to prevent cross-site scripting (XSS) and other code injection attacks. It allows web developers to control where resources such as scripts, images and styles can be loaded from, and can help to prevent malicious code from being executed in the browser.
 
 A CSP is set using an HTTP response header, and it is a set of policies that the browser should follow when loading resources for a particular page. The policies specify which sources of content are allowed to be loaded by the browser and which should be blocked.
