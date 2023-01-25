@@ -241,20 +241,23 @@ One popular tool for implementing caching in Node.js is Redis, an in-memory data
 
 Step 1: Install Redis server -
 
-Windows:
-- Download the Redis Windows installer from the official website (https://github.com/microsoftarchive/redis/releases)
-- Run the installer to install Redis on your system.
-- Open the Command Prompt and Run the command redis-cli to start the Redis server.
-macOS:
-- Install Redis using Homebrew by running the command brew install redis.
-- Start the Redis server by running the command redis-server.
+* Windows:
+  - Download the Redis Windows installer from the official website (https://github.com/microsoftarchive/redis/releases)
+  - Run the installer to install Redis on your system.
+  - Open the Command Prompt and Run the command redis-cli to start the Redis server.
+
+* macOS:
+  - Install Redis using Homebrew by running the command brew install redis.
+  - Start the Redis server by running the command redis-server.
 
 To check if the Redis server is running correctly, type PING in the terminal. The server should respond with PONG, indicating that the server is up and running.
 
 Step 2: Install Redis Client for node.js
 
 To use Redis in a Node.js application, we'll need to install the Redis client for Node.js.
-```npm i redis```
+```
+npm i redis
+```
 
 Step 3: Create a Redis client instance
 
@@ -299,7 +302,9 @@ In the cache function, we create a key based on the URL, so that we can retrieve
 Step 5: Use the caching middleware in your application
 
 To use the caching middleware in our application, we'll need to add it to the Express middleware stack using the app.use() function.
-```app.use(cache);```
+```
+app.use(cache);
+```
 Step 6: Use the cache
 
 In this example, we'll use the caching middleware for a simple endpoint that generates a large amount of data.
@@ -311,7 +316,9 @@ app.get("/data", (req, res) => {
   }
   res.json(data);
 });
+```
 Step 7: Connecting redis client with server
+```
 app.listen(3000, () => {
   console.log("Server listening on port 3000");
   client.connect().then(()=> {
